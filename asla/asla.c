@@ -39,37 +39,38 @@ int main(int argc, const char *argv[])
 		//printf("The word is %s\n", word[count]);
 		count++;
 	}
+	fclose(lesson);
 
 	// Store number of string in file
 	int numOfStr = count;
 
 	// Used to break out of sentinel loop
-	int input = -1;
+	char dump[80] = "";
 	int index = -1;
 	for (;;) {
 		printf("Press ENTER to continue (0 to exit): ");
-		scanf("%i", &input);
+		scanf("%s", dump);
+		printf("%s\n",dump);
 
-		if (input == 0) {
+		if (dump[0] == '0') {
 			break;
 		}
+		else if (count < 1) {
+			printf("End of file reached.\n");
+		}
 		else if (count > 0) {
-			do {
-				index = rand() % numOfStr;
-				
-				// printf("%i\n", index);
-				if (flag[index] == 0) {
+			index = rand() % numOfStr;
+			
+			// printf("%i\n", index);
+			if (flag[index] == 0) {
 
-					count--;
-					flag[index] = -1;
-					printf("%s\n", word[index]);
-				}
-			} while (flag[index] == -1);
-
+				count--;
+				flag[index] = -1;
+				printf("%s\n", word[index]);
+			}
 		}
 	}
 	//printf("There are %i words in this file", count);
-	fclose(lesson);
 
 	return 0;
 }
