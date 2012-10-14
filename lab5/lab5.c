@@ -1,7 +1,6 @@
 /* lab5.c - SYSC 2006 Fall 2012 Lab 5 */
-
-#include <stdlib.h>  // Tip: abs(x)
-#include <stdio.h>   
+#include <stdio.h>
+#include "fraction.h"
 
 
 int main(void)
@@ -102,7 +101,7 @@ int main(void)
 	}
 
 	result = make_fraction(6,8);
-	if (result.num != 6 || result.den != 8) {
+	if (result.num != 3 || result.den != 4) {
 		printf("Calling make_fraction(6, 8). Expected result = 3/4. Actual result = ");
 		print_fraction(make_fraction(6, 8));
 		printf(".\n");
@@ -116,7 +115,7 @@ int main(void)
 	}
 
 	result = make_fraction(4,-5);
-	if (result.num != 4 || result.den != -5) {
+	if (result.num != -4 || result.den != 5) {
 		printf("Calling make_fraction(4, -5). Expected result = -4/5. Actual result = ");
 		print_fraction(make_fraction(4, -5));
 		printf(".\n");
@@ -137,10 +136,96 @@ int main(void)
 	}
 
 	/* Test multiply_fractions. */
-	printf("\nTesting multiply_fractions. Insert test code here.\n");
+	printf("\nTesting multiply_fractions.\n");
+	result = multiply_fractions(make_fraction(0,1), make_fraction(0,2));
+	if (result.num != 0 || result.den != 1) {
+		printf("Calling multiply_fractions(make_fraction(0,1), make_fraction(0,2)). Expected result = 0/1. Actual result = ");
+		print_fraction(result);
+		printf(".\n");
+	}
+
+	result = multiply_fractions(make_fraction(1,1), make_fraction(0,2));
+	if (result.num != 0 || result.den != 1) {
+		printf("Calling multiply_fractions(make_fraction(1,1), make_fraction(0,2)). Expected result = 0/1. Actual result = ");
+		print_fraction(result);
+		printf(".\n");
+	}
+
+	result = multiply_fractions(make_fraction(0,1), make_fraction(2,2));
+	if (result.num != 0 || result.den != 1) {
+		printf("Calling multiply_fractions(make_fraction(0,1), make_fraction(2,2)). Expected result = 0/1. Actual result = ");
+		print_fraction(result);
+		printf(".\n");
+	}
+
+	result = multiply_fractions(make_fraction(3,1), make_fraction(4,2));
+	if (result.num != 6 || result.den != 1) {
+		printf("Calling multiply_fractions(make_fraction(3,1), make_fraction(4,2)). Expected result = 6/1. Actual result = ");
+		print_fraction(result);
+		printf(".\n");
+	}
+
+	result = multiply_fractions(make_fraction(3,2), make_fraction(2,9));
+	if (result.num != 1 || result.den != 3) {
+		printf("Calling multiply_fractions(make_fraction(3,2), make_fraction(2,9)). Expected result = 1/3. Actual result = ");
+		print_fraction(result);
+		printf(".\n");
+	}
+
+	result = multiply_fractions(make_fraction(3,12), make_fraction(4,9));
+	if (result.num != 1 || result.den != 9) {
+		printf("Calling multiply_fractions(make_fraction(3,12), make_fraction(4,9)). Expected result = 1/1. Actual result = ");
+		print_fraction(result);
+		printf(".\n");
+	}
+
 
 	/* Test add_fractions. */
-	printf("\nTesting add_fractions. Insert test code here.\n");
+	printf("\nTesting add_fractions.\n");
+
+	result = add_fractions(make_fraction(0,1), make_fraction(0,2));
+	if (result.num != 0 || result.den != 1) {
+		printf("Calling add_fractions(make_fraction(0,1), make_fraction(0,2)). Expected result = 0/1. Actual result = ");
+		print_fraction(result);
+		printf(".\n");
+	}
+
+	result = add_fractions(make_fraction(1,1), make_fraction(0,2));
+	if (result.num != 1 || result.den != 1) {
+		printf("Calling add_fractions(make_fraction(1,1), make_fraction(0,2)). Expected result = 1/1. Actual result = ");
+		print_fraction(result);
+		printf(".\n");
+	}
+
+	result = add_fractions(make_fraction(0,1), make_fraction(2,2));
+	if (result.num != 1 || result.den != 1) {
+		printf("Calling add_fractions(make_fraction(0,1), make_fraction(2,2)). Expected result = 1/1. Actual result = ");
+		print_fraction(result);
+		printf(".\n");
+	}
+
+	result = add_fractions(make_fraction(3,1), make_fraction(4,2));
+	if (result.num != 5 || result.den != 1) {
+		printf("Calling add_fractions(make_fraction(3,1), make_fraction(4,2)). Expected result = 5/1. Actual result = ");
+		print_fraction(result);
+		printf(".\n");
+	}
+
+	result = add_fractions(make_fraction(3,2), make_fraction(2,9));
+	if (result.num != 31 || result.den != 18) {
+		printf("Calling add_fractions(make_fraction(3,2), make_fraction(2,9)). Expected result = 31/18. Actual result = ");
+		print_fraction(result);
+		printf(".\n");
+	}
+
+	result = add_fractions(make_fraction(3,12), make_fraction(4,9));
+	if (result.num != 25 || result.den != 36) {
+		printf("Calling add_fractions(make_fraction(3,12), make_fraction(4,9)). Expected result = 25/36. Actual result = ");
+		print_fraction(result);
+		printf(".\n");
+	}
+
+
 
 	return 0;
 }
