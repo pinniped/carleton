@@ -4,4 +4,4 @@ CFLAGS = -Wall
 OBJECTS = main.o io.o
 
 main.exe : $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) -o main.exe
+	$(CC) $(CFLAGS) $(OBJECTS) -o $@

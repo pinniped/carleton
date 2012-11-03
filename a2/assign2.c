@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define MAX_PLS 20
 #define MAX_VTS 50
@@ -25,31 +26,21 @@ int main(int argc, const char *argv[])
 {
 	FILE *ifile = NULL;
 	FILE *ofile = NULL;
-	char iname[80];
-	char oname[80];
 
 	struct poll poll[MAX_PLS];
 
 	int pollCount = 0;
 	int voteCount = 0;
 
-	// Get input file name and attempt to open
-	while (ifile == NULL) {
-		/*
-		printf("Please enter a INPUT file name: ");
-		scanf("%s", iname);
-		ifile = fopen(iname, "r");
-		*/
-		ifile = fopen(argv[1], "r");
-		if (ifile == NULL) {
-			printf("No such file exists; try again!\n");
-		}
+	// Get input file name from cmd line arg and attempt to open
+	ifile = fopen(argv[1], "r");
+	// Check for valid input file
+	if (ifile == NULL) {
+		fprintf(stderr, "Input file does not exist; please try again. Terminating program.\n");
+		exit(EXIT_FAILURE);
 	}
 
 	// Get output file name and attempt to open
-	/*printf("Please enter a OUTPUT file name: ");
-	scanf("%s", oname);
-	ofile = fopen(oname, "w");*/
 	ofile = fopen(argv[2], "w");
 
 	// Initialize poll
@@ -61,55 +52,71 @@ int main(int argc, const char *argv[])
 		}
 	}
 
-	// Read in poll and vote IDs
-	for (;;) {
-		fscanf(ifile, "%d", &poll[pollCount].id);
-		if (poll[pollCount].id == 0) {
-			break;
-		} 
+	// Get the first poll ID
+	// (We assume there is at least ONE poll ID)
+	fscanf(ifile, "%d", &poll[pollCount].id);
+
+	// Read in poll IDs until 0
+	while (poll[pollCount].id != 0) {
+		// Reset vote count for current poll ID to 0
 		voteCount = 0;
-		for (;;) {
-			fscanf(ifile, "%d", &poll[pollCount].vote[voteCount].id);
-			if (poll[pollCount].vote[voteCount].id == 0) {
-				break;
-			}
+
+		// Read in a vote ID
+		// (We assume there is at least ONE vote ID)
+		fscanf(ifile, "%d", &poll[pollCount].vote[voteCount].id);
+
+		// Loop for reading vote IDs until 0
+		while (poll[pollCount].vote[voteCount].id != 0) {
+			// Error handling for too many vote IDs
 			if (voteCount++ == MAX_VTS) {
-				printf("TOO MANY VOTES. Go into program and increase MAX_VTS.\n");
-				break;
+				fprintf(stderr, "Too many vote IDs: Please increase MAX_VTS in main(). Terminating program.\n");
+				exit(EXIT_FAILURE);
 			}
+			// Get new vote ID
+			fscanf(ifile, "%d", &poll[pollCount].vote[voteCount].id);
 		}
+		// Error handling for too many poll IDs
 		if (pollCount++ == MAX_PLS) {
-			printf("TOO MANY POLLS. Go into program and increase MAX_PLS.\n");
-			break;
+			fprintf(stderr, "Too many poll IDs: Please increase MAX_PLS in main(). Terminating program.\n");
+			exit(EXIT_FAILURE);
 		}
+		// Get new poll ID
+		fscanf(ifile, "%d", &poll[pollCount].id);
 	}
 
 
+	// Temporarily hold in data to campare with IDs
 	int pollID,
 		voteID;
 	// Read in data
-	for (;;) {
-		fscanf(ifile, "%d %d", &pollID, &voteID);
-		// Check for EOF after reading
-		if (feof(ifile)) {
-			break;
-		}
+	fscanf(ifile, "%d %d", &pollID, &voteID);
+	// Check for EOF after reading
+	while (!feof(ifile)) {
+		// Looks for matching poll ID
 		for (int i = 0; poll[i].id != 0; i++) {
 			if (pollID == poll[i].id) {
+				// Looks for matching vote ID
 				for (int j = 0; poll[i].vote[j].id != 0; j++) {
 					if (voteID == poll[i].vote[j].id) {
+						// Increment count for current vote ID if match found
 						poll[i].vote[j].count++;
 					}
 				}
 			}
 		}
+		// Get new data
+		fscanf(ifile, "%d %d", &pollID, &voteID);
 	}
 
+	// Print data to appropriate output file
 	for (int i = 0; poll[i].id != 0; i++) {
+		// Print poll ID
 		fprintf(ofile, "Poll %d (%d)\n", i, poll[i].id);
+		// Print all vote IDs and count for current poll ID
 		for (int j = 0; poll[i].vote[j].id != 0; j++) {
 			fprintf(ofile, "\t%d (%d): %d\n", j, poll[i].vote[j].id, poll[i].vote[j].count);
 		}
+		// Formatting
 		fprintf(ofile, "\n");
 	}
 
