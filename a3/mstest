@@ -1,0 +1,7 @@
+CC = g++
+#CFLAGS = -g -O2
+CFLAGS = -Wall
+OBJECTS = mstest.o minesweeper.o
+
+b.exe : $(OBJECTS)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $@
