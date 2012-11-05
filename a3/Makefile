@@ -5,3 +5,6 @@ OBJECTS = assign3.o minesweeper.o
 
 a.exe : $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) -o $@
+
+%.o : %.c %.h
+	$(CC) $(CFLAGS) -c $<

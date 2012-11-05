@@ -5,82 +5,94 @@
 #include <math.h>
 #include "minesweeper.h"
 
-// Initialize square
-void initSquare(Square *sqr) {
-	sqr->nSurround = 0;
-	sqr->hidden = true;
-	sqr->flagged = false;
-	sqr->mined = false;
-}
-
-// Returns a board of containing n x m squares
-// n left<->right, n=0 at bottom left
-// m up<->down, m=0 at bottom left
-Board makeBoard(int n, int m) {
-	Board b;
-	b.nMines = 0;
-	b.width = n;
-	b.height = m;
-	b.sqr = (Square *)malloc(n * m * sizeof(Square));
-	b.state = PLAY;
+// Creates a minesweeper game and 
+// initalizes it with a board
+// of size (width * height)
+Game makeGame(int width, int height) {
+	Game g;
+	g.mode = GAME;
+	g.nMines = 0;
+	g.width = width;
+	g.height = height;
+	g.board = (Square *)malloc(width * height * sizeof(Square));
+	g.state = PLAY;
 
 	// Initialize square array
-	for (int i = 0; i < (n * m); i++) {
-		initSquare(&(b.sqr[i]));
+	for (int i = 0; i < (width * height); i++) {
+		initSquare(&(g.board[i]));
 	}
 
-
-	return b;
+	return g;
 }
 
-// Sets mines on board b 
+// Frees up memory allocated in game from makeGame
+void delGame(Game *g) {
+	free(g->board);
+}
+
+// Initialize square
+void initSquare(Square *s) {
+	s->nSurround = 0;
+	s->hidden = true;
+	s->flagged = false;
+	s->mined = false;
+}
+
+// Checks if a given move is valid
+bool isValid(Game *g, char *move, int down, int right) {
+	bool validDown = down < (g->height);
+	bool validRight = right < (g->width);
+	bool validMove = 
+		!strcmp(move, "dig") || !strcmp(move, "d") ||
+		!strcmp(move, "flag") || !strcmp(move, "f");
+	return validDown && validRight && validMove;
+}
+
+// Sets mines on game g 
 // Mines locations are determined from inFile
-// If inFile is null, we set mines randomly
-// Each time a mine is placed, the surrounding squares
-// have their nSurround value incremented.
-void setMines(FILE *inFile, Board *b) {
+void setMines(FILE *inFile, Game *g) {
 	int down, right;
 	while (!feof(inFile)) {
-		b->nMines++;
+		g->nMines++;
 		fscanf(inFile, "%d ", &down);
 		fscanf(inFile, "%d ", &right);
-		mine(b, down, right);
+		mine(g, down, right);
 	}
-	printf("nMines: %d\n", b->nMines);
 }
 
-// Randomly generate mines on Board b
+// Randomly generate mines on Game b
 // Random number of mines are determined as a
 // ratio of the board size
-void generateMines(Board *b) {
-	int nMines = ceil((float)RATIO * (b->width * b->height));
-	printf("nMines: %d\n", nMines);
+void generateMines(Game *g) {
+	g->nMines = ceil((float)RATIO * (g->width * g->height));
 	int randD, randR;
 	Square *s;
-	for (int i = 0; i < nMines; i++) {
+	for (int i = 0; i < g->nMines; i++) {
 		do {
-			// randomize right and down
-			randD = rand() % b->height;
-			randR = rand() % b->width;
-			s = getSquare(b, randD, randR);
+			// Randomize right and down
+			randD = rand() % g->height;
+			randR = rand() % g->width;
+			s = getSquare(g, randD, randR);
 		} while (s->mined);
-		mine(b, randD, randR);
+		mine(g, randD, randR);
 	}
 }
 
-// Sets mined to true for square at down, right
-void mine(Board *b, int down, int right) {
-	Square *s = getSquare(b, down, right);
+// Sets a mine at down, right
+// Surrounding squares' nSurround are all incremented
+void mine(Game *g, int down, int right) {
+	Square *s = getSquare(g, down, right);
 	s->mined = true;
-	updateSurround(b, down, right);
+	updateSurround(g, down, right);
 }
 
 // Reveals all mines on board for end of game
-void revealMines(Board *b) {
+void revealMines(Game *g) {
 	Square *s;
-	for (int i = 0; i < b->height; i++) {
-		for (int j = 0; j < b->width; j++) {
-			s = getSquare(b, i, j);
+	// Traverse entire board
+	for (int i = 0; i < g->height; i++) {
+		for (int j = 0; j < g->width; j++) {
+			s = getSquare(g, i, j);
 			if (s->mined) {
 				s->hidden = false;
 			}
@@ -89,11 +101,11 @@ void revealMines(Board *b) {
 }
 
 // Update nSurround for squares around down, right
-void updateSurround(Board *b, int down, int right) {
+void updateSurround(Game *g, int down, int right) {
 	Square *s;
 	for (int i = down-1; i < down+2; i++) {
 		for (int j = right-1; j < right+2; j++) {
-			s = getSquare(b, i, j);
+			s = getSquare(g, i, j);
 			if (s != NULL) {
 				s->nSurround++;
 			}
@@ -104,63 +116,77 @@ void updateSurround(Board *b, int down, int right) {
 // Reveals square at down, right 
 // Game ends if it was a mine
 // Otherwise, appropriate squares are revealed
-void digSquare(Board *b, int down, int right) {
-	Square *s = getSquare(b, down, right);
-	if (s->hidden) {
-		s->hidden = false;
-		if (s->mined) {
-			b->state = LOSE;
-		} else if (s->nSurround == 0) {
-			digSurround(b, down, right);
-		}
-	} else {
-		printf("You already digged that square!\n\n");
+void digSquare(Game *g, int down, int right) {
+	Square *s = getSquare(g, down, right);
+
+	// Reveal square
+	s->hidden = false;
+
+	if (s->mined) {
+		g->state = LOSE;
+	} else if (s->nSurround == 0) {
+		// If square as 0 surrounding mines,
+		// reveal all squares surrounding it
+		digSurround(g, down, right);
 	}
 }
 
-// Digs the surrounding squares
-void digSurround(Board *b, int down, int right) {
+// Digs the surrounding squares of down, right
+void digSurround(Game *g, int down, int right) {
 	Square *s;
+	// Row iteration from (down-1) to (down+1)
 	for (int i = down-1; i < down+2; i++) {
+		// Column iteration from (right-1) to (right+1)
 		for (int j = right-1; j < right+2; j++) {
-			s = getSquare(b, i, j);
+			s = getSquare(g, i, j);
 			if (s != NULL && s->hidden) {
-				digSquare(b, i, j);
+				// Dig appropriate square if it's not off 
+				// the edge and not already dug
+				digSquare(g, i, j);
 			}
 		}
 	}
 }
 
-// Handles moves from user
-void move(Board *b, char *move, int down, int right) {
-	if (!strcmp(move,"dig")) {
-
-	}
+// Toggles the flag on square at down, right
+void toggleFlag(Game *g, int down, int right) {
+	Square *s = getSquare(g, down, right);
+	s->flagged = !s->flagged;
 }
 
 // Prints instructions to console
 void printInstructions(void) {
+	printf("\nHello soldier. It is presumed you are familiar with the art of minesweeping.\n");
+	printf("The moves you make must be a COMMMAND followed by a COORDINATE.\n");
+	printf("The COMMAND can be either \"dig\" or \"flag\" (alternately, \"d\" or \"f\").\n");
+	printf("The COORDINATE must be two numbers: the first and second number represent the\n");
+	printf("row and colomn number repectively. The row number is given on the left border\n");
+	printf("and the column number on the top border.\n");
+	printf("For example, \"d 2 3\" digs the square 2 down from the top row and\n");
+	printf("3 right from the left-most column.\n\n");
+	printf("Good luck and godspeed.\n");
+	printf("\n\n");
 }
 
-// Returns the pointer to a square on Board b, at down, right 
+// Returns the pointer to a square on Game g, at down, right 
 // Returns null if the square is off the board
-Square *getSquare(Board *b, int down, int right) { 
+Square *getSquare(Game *g, int down, int right) { 
 	bool tEdge = (down < 0);
-	bool bEdge = (down >= b->height); 
+	bool bEdge = (down >= g->height); 
 	bool lEdge = (right < 0);
-	bool rEdge = (right >= b->width); 
+	bool rEdge = (right >= g->width); 
 	if (tEdge || bEdge || lEdge || rEdge) {
 		return NULL;
 	} else {
-		return b->sqr + (b->width * down) + right;
+		return g->board + (g->width * down) + right;
 	}
 }
 
 // Prints board to screen
-void drawBoard(Board *b) {
+void drawGame(Game *g, FILE *outFile) {
 	Square *s;
-	for (int i = 0; i < b->height+1; i++) {
-		for (int j = 0; j < b->width+1; j++) {
+	for (int i = 0; i < g->height+1; i++) {
+		for (int j = 0; j < g->width+1; j++) {
 			// Prints top border
 			if (i == 0) {
 				if (j == 0) {
@@ -174,16 +200,22 @@ void drawBoard(Board *b) {
 			} else {
 				// Prints side border
 				if (j == 0) {
-					if (i < 10) {
+					if ((i-1) < 10) {
 						printf(" ");
 					} 
-					printf("%d", i);
+					printf("%d", i-1);
 				} else {
 					// Prints squares
-					s = getSquare(b, i-1, j-1);
+					s = getSquare(g, i-1, j-1);
+					// Hidden squares
 					if (s->hidden) {
-						printf("%c ", BLK_SQR);
+						if (s->flagged) {
+							printf("%c ", '#');
+						} else {
+							printf("%c ", BLK_SQR);
+						}
 					} else {
+						// Revealed squares
 						if (s->mined) {
 							printf("%c ", 'x');
 						} else {
@@ -201,15 +233,16 @@ void drawBoard(Board *b) {
 		// Start of new row
 	}
 	printf("\n");
+	//Separates last board display with new prompt
 }
 
 // Checks if user has won
-bool checkWin(Board *b) {
+bool checkWin(Game *g) {
 	bool win = true;
 	Square *s;
-	for (int i = 0; i < b->height; i++) {
-		for (int j = 0; j < b->width; j++) {
-			s = getSquare(b, i, j);
+	for (int i = 0; i < g->height; i++) {
+		for (int j = 0; j < g->width; j++) {
+			s = getSquare(g, i, j);
 			if (!(s->mined) && s->hidden) {
 				win = false;
 			}
