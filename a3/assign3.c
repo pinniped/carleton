@@ -46,13 +46,16 @@ int main(int argc, const char *argv[])
 
 		// Optionally display instructions
 		char r;
-		printf("\nWould you like to see the instructions? ");
+		smartPrint(g.mode, outFile, "\nWould you like to see the instructions? ");
 		scanf("%c", &r);
 		if (tolower(r) == 'y') {
 			printInstructions();
 		}
 
 		// Display total number of mines on board
+		if (g.mode == TEST) {
+			fprintf(outFile, "There are %d mines total on this board.\n\n", g.nMines);
+		} 
 		printf("There are %d mines total on this board.\n\n", g.nMines);
 
 		int down, right;
@@ -66,8 +69,11 @@ int main(int argc, const char *argv[])
 			char move[80] = "";
 			while (!isValid(&g, move, down, right)) {
 				// Prompt for move 
-				printf("Please make your move: ");
+				smartPrint(g.mode, outFile, "Please make your move: ");
 				scanf("%s %d %d", move, &down, &right);
+				if (g.mode == TEST) {
+					fprintf(outFile, "%s %d %d\n", move, down, right);
+				}
 			}
 
 			if (!strcmp(move, "flag") || !strcmp(move, "f")) {
@@ -75,7 +81,7 @@ int main(int argc, const char *argv[])
 			} else if (!strcmp(move, "dig") || !strcmp(move, "d")) {
 				Square *s = getSquare(&g, down, right);
 				if (s->flagged) {
-					printf("Cannot dig a flagged square.\n\n");
+					smartPrint(g.mode, outFile, "Cannot dig a flagged square.\n\n");
 				} else {
 					// Reveals square at down, right 
 					// Game ends if it was a mine
@@ -83,7 +89,7 @@ int main(int argc, const char *argv[])
 					if (s->hidden) {
 						digSquare(&g, down, right);
 					} else {
-						printf("You already digged that square!\n\n");
+						smartPrint(g.mode, outFile, "You already digged that square!\n\n");
 					}
 					if (checkWin(&g)) {
 						// Game wins if it was the last unmined square
@@ -96,9 +102,9 @@ int main(int argc, const char *argv[])
 
 		// Display appropriate ending message to console
 		if (g.state == WIN) {
-			printf("\nCongratulations! You cleared the minefield. Promotions and awards all around!\n");
+			smartPrint(g.mode, outFile, "\nCongratulations! You cleared the minefield. Promotions and awards all around!\n");
 		} else {
-			printf("\nBOOM! Your body shatters into a million pieces and your blood rains over the battlefield. Better luck next time.\n");
+			smartPrint(g.mode, outFile, "\nBOOM! Your body shatters into a million pieces and your blood rains over the battlefield. Better luck next time.\n");
 			revealMines(&g);
 		}
 		drawGame(&g, outFile);

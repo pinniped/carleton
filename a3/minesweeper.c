@@ -190,19 +190,34 @@ void drawGame(Game *g, FILE *outFile) {
 			// Prints top border
 			if (i == 0) {
 				if (j == 0) {
-					printf("  ");
-				} else {
-					printf("%d", j-1);
-					if (j-1 < 10) {
-						printf(" ");
+					if (g->mode == TEST) {
+						fprintf(outFile, " ");
 					}
+					printf(" ");
+				} else {
+					if (g->mode == TEST) {
+						fprintf(outFile, "%d", j-1);
+					}
+					printf("%d", j-1);
+				}
+				if (j-1 < 10) {
+					if (g->mode == TEST) {
+						fprintf(outFile, " ");
+					}
+					printf(" ");
 				}
 			} else {
 				// Prints side border
 				if (j == 0) {
 					if ((i-1) < 10) {
+						if (g->mode == TEST) {
+							fprintf(outFile, " ");
+						}
 						printf(" ");
 					} 
+					if (g->mode == TEST) {
+						fprintf(outFile, "%d", i-1);
+					}
 					printf("%d", i-1);
 				} else {
 					// Prints squares
@@ -210,18 +225,30 @@ void drawGame(Game *g, FILE *outFile) {
 					// Hidden squares
 					if (s->hidden) {
 						if (s->flagged) {
-							printf("%c ", '#');
+							if (g->mode == TEST) {
+								fprintf(outFile, "%c ", FLAG);
+							}
+							printf("%c ", FLAG);
 						} else {
+							if (g->mode == TEST) {
+								fprintf(outFile, "%c ", BLK_SQR);
+							}
 							printf("%c ", BLK_SQR);
 						}
 					} else {
 						// Revealed squares
 						if (s->mined) {
-							printf("%c ", 'x');
+							if (g->mode == TEST) {
+								fprintf(outFile, "%c ", MINE);
+							}
+							printf("%c ", MINE);
 						} else {
 							if (s->nSurround == 0) {
-								printf("  ");
+								smartPrint(g->mode, outFile, "  ");
 							} else {
+								if (g->mode == TEST) {
+									fprintf(outFile, "%d ", s->nSurround);
+								}
 								printf("%d ", s->nSurround);
 							}
 						}
@@ -229,10 +256,10 @@ void drawGame(Game *g, FILE *outFile) {
 				}
 			}
 		}
-		printf("\n");
+		smartPrint(g->mode, outFile, "\n");
 		// Start of new row
 	}
-	printf("\n");
+	smartPrint(g->mode, outFile, "\n");
 	//Separates last board display with new prompt
 }
 
@@ -249,4 +276,13 @@ bool checkWin(Game *g) {
 		}
 	}
 	return win;
+}
+
+// Prints s to outFile is test mode
+// otherwise, prints to console
+void smartPrint(int mode, FILE *outFile, char *s) {
+	if (mode == TEST) {
+		fprintf(outFile, "%s", s);
+	}
+	printf("%s", s);
 }

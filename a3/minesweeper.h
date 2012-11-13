@@ -6,6 +6,8 @@
 #define WIN 1
 
 #define BLK_SQR 178
+#define FLAG '#'
+#define MINE 'x'
 
 // This number can be set from 0 and 1 inclusive
 #define RATIO 1/8
@@ -85,3 +87,7 @@ void printInstructions(void);
 
 // Checks if user has won
 bool checkWin(Game *g);
+
+// Prints s to outFile is test mode
+// otherwise, prints to console
+void smartPrint(int mode, FILE *outFile, char *s);
