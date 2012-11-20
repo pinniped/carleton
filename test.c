@@ -1,24 +1,18 @@
 #include <stdio.h>
-int f(int, int);
+#include <stdlib.h>
 
 int main(void)
 {
-	int num[3];
-	num[3] = 2;
-	printf("%d\n", num[3]);
-	//int x = f(4,9);
-	int x = f(4.33,9.25);
-	printf("%d\n", x);
 
+	int** a = (int**)malloc(7 * sizeof(int*));
+	int* b = (int*)malloc(7*sizeof(int));
+
+	for (int i = 0; i < 7; i++) {
+		b[i] = i;
+		a[i] = &b[i];
+		printf("b[i]: %d, a[i]: %x, *a[i]: %d.\n", b[i], a[i], *a[i]);
+	}
 	
 	return 0;
 }
 
-int f(int a, int b)
-{
-	if (a>b) {
-		return a;
-	} else {
-		return b;
-	}
-}
