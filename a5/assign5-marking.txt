@@ -1,0 +1,58 @@
+
+Total Marks = 32 marks, assigned only after oral exam of submitted assignment.
+
+
+Referring to the General Marking Rubric on the course site,
+    the breakdown will be as follows;
+
+    Specification: (25 marks)
+
+
+
+Step 1:  Reading of the input file, and printing to the screen or file
+  +1 	command-line argument for filenames of input and output file
+  +1	Appropriate reading of entire file.
+
+Step 2: Implementation of pollList, building from the data read in.
+  +1	structure definitions for POLL_NODE & VOTE_NOTE match specification
+  +1 	One POLL_NODE created and initialized by each line of input file
+  +1 	POLL_NODE is inserted properly to the front of the pollList
+  +2	pollList is NICELY printed to the screen.  (Full marks requires legible printout).
+
+Step 2 + Other marks = 7 + 8 = 15/25 = 60 possible
+
+Step 3: search() function
+  +1	Returns head pointer to voteLIst, including NULL if the voteList is null.
+  +1    Traverses pollList from start to finish and checking contents of each POLL_NODE appropriately.
+  +1    Traversal of existing voteList to see if a vote has already been seen before
+  +1	Adding a new VOTE_NODE if the vote is new or incrementing the count of exisitng VOTE_NODE if vote is old.
+  +2	Contents of returned voteLists are printed to the OUTPUT HISTOGRAM FILE.  
+		1 mark only if printed to screen or printout is not legible.
+
+
+Step 3 = 7 + 6 + 8 = 21 / 25 = 84% possible
+
+Step 4: 
+  +1 	search() function now crosses out visited POLL_NODEs
+  +1	main() function traverse the pollList, calling search for each NEW pollID
+  +2	main() prints out the 
+ 
+
+
+    Readability (2 marks)
+       Good use of functions -- Did they implement printList(), printNode?
+		Full marks if go beyond those functions actually required.
+
+       Good names of variables,    Well-structured loops
+
+    Efficiency (2 marks)
+       No unnecessary or confusing extra variables, simple return statements,
+
+    Robustness ( 2 marks)
+       Check for NULL after malloc() or fopens()
+	Code can handle empty lists in all traversals.
+       Check for argv[1] (using argc).
+
+    Documentation (2 marks)
+       Comments throughout code (at major spots, not per line) and headings for functions.
+
