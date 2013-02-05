@@ -1,0 +1,146 @@
+#include <iostream>
+#include <cmath>
+#include <limits>
+#include <iomanip>
+using namespace std;
+
+// Cross-platform replacement to system("pause")
+void waitReturn() {
+	cout << "Press ENTER to continue...";
+	cin.get();
+}
+
+// Sanitize input stream
+void iClear() {
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+
+// Given a number, returns true if it is an integer and
+// false otherwise.
+bool isInt (double value) {
+	double dummy;
+	return bool(modf(value, &dummy) == 0);
+}
+
+// Given a number, returns its square
+int square(int number) {
+	return number * number;
+}
+
+// Prints the header preceding rows of data
+void printHeader() {
+	cout << setw (11);
+	cout << "Value";
+	cout << setw (10);
+	cout << "Square";
+	cout << setw (14);
+	cout << "Square Root";
+	cout << setw (8);
+	cout << "Prime?";
+	cout << endl;
+}
+
+// Given a number and a precision, prints the square
+// root of number to precision decimal places
+// If number is less than 0, prints N/A
+void printSqrt(int number, int precision) {
+	cout << fixed << setprecision(precision);
+	if (number >= 0) {
+		cout << sqrt(number);
+	} else {
+		cout << "N/A";
+	}
+}
+
+// Given a number, prints yes if it is a prime,
+// no otherwise. Print N/A if number is less than 2
+void printPrime(int number) {
+	if (number < 2) {
+		cout << "N/A";
+		return;
+	}
+
+	bool prime = true;
+	for (int i = 2; i < number; i++) {
+		if (number % i == 0) {
+			prime = false;
+			break;
+		}
+	}
+
+	if (prime) {
+		cout << "yes";
+	} else {
+		cout << "no";
+	}
+
+}
+// Given a number and precision, prints a row of data
+void printRow(int number, int precision) {
+	cout << setw (10);
+	cout << number;
+	cout << setw (11);
+	cout << square(number);
+	cout << setw (13);
+	printSqrt(number, precision);
+	cout << setw (7);
+	printPrime(number);
+	cout << endl;
+}
+
+int main (void) {
+	// Variables
+	int startValue,
+		prevStartValue,
+		rows,
+		decimals;
+
+	bool firstTime = true;
+	
+	for (;;) {
+		// Get and store start value
+		cout << "Enter start value (repeat previous number to exit): ";
+		cin >> startValue;
+		iClear();
+
+		// If first iteration, initiate prevStartValue
+		// If sentinel value is met, break loop
+		if (firstTime) {
+			firstTime = false;
+			prevStartValue = startValue;
+		} else if (startValue == prevStartValue) {
+			break;
+		}
+
+		// Loop for getting valid input for rows and decimals
+		for (;;) {
+			cout << "Enter number of rows and number of decimal places desired: ";
+			cin >> rows >> decimals;
+			iClear();
+			//break;
+
+			bool validRows = rows >= 1 && rows <= 200;
+			bool validDecimals = decimals >= 1 && decimals <= 7;
+
+			if (validRows && validDecimals) {
+				break;
+			} else {
+				cout << "1<=rows<=200 and 1<=decimals<=7, try again!" << endl;
+			}
+		}
+
+		// Store current startValue for use in next iteration
+		prevStartValue = startValue;
+
+		// Print header
+		printHeader();
+		// Print "rows" rows of data, as specified by the assignment
+		for (int i = 0; i < rows; i++) {
+			printRow(startValue, decimals);
+			startValue ++;
+		}
+	}
+	
+	waitReturn();
+	return 0;
+}

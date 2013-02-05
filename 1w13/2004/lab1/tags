@@ -1,0 +1,33 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+LabClass	LabClass.java	/^    public LabClass(int maxNumberOfStudents)$/;"	m	class:LabClass
+LabClass	LabClass.java	/^public class LabClass$/;"	c
+Student	Student.java	/^    public Student(String fullName, String studentID)$/;"	m	class:Student
+Student	Student.java	/^public class Student$/;"	c
+addCredits	Student.java	/^    public void addCredits(int additionalPoints)$/;"	m	class:Student
+capacity	LabClass.java	/^    private int capacity;$/;"	f	class:LabClass	file:
+changeName	Student.java	/^    public void changeName(String replacementName)$/;"	m	class:Student
+credits	Student.java	/^    private int credits;$/;"	f	class:Student	file:
+enrollStudent	LabClass.java	/^    public void enrollStudent(Student newStudent)$/;"	m	class:LabClass
+getCredits	Student.java	/^    public int getCredits()$/;"	m	class:Student
+getLoginName	Student.java	/^    public String getLoginName()$/;"	m	class:Student
+getName	Student.java	/^    public String getName()$/;"	m	class:Student
+getStudentID	Student.java	/^    public String getStudentID()$/;"	m	class:Student
+id	Student.java	/^    private String id;$/;"	f	class:Student	file:
+instructor	LabClass.java	/^    private String instructor;$/;"	f	class:LabClass	file:
+main	main.java	/^	public static void main (String[] args) {$/;"	m	class:main
+main	main.java	/^public class main {$/;"	c
+name	Student.java	/^    private String name;$/;"	f	class:Student	file:
+numberOfStudents	LabClass.java	/^    public int numberOfStudents()$/;"	m	class:LabClass
+print	Student.java	/^    public void print()$/;"	m	class:Student
+printList	LabClass.java	/^    public void printList()$/;"	m	class:LabClass
+room	LabClass.java	/^    private String room;$/;"	f	class:LabClass	file:
+setInstructor	LabClass.java	/^    public void setInstructor(String instructorName)$/;"	m	class:LabClass
+setRoom	LabClass.java	/^    public void setRoom(String roomNumber)$/;"	m	class:LabClass
+setTime	LabClass.java	/^    public void setTime(String timeAndDayString)$/;"	m	class:LabClass
+students	LabClass.java	/^    private ArrayList<Student> students;$/;"	f	class:LabClass	file:
+timeAndDay	LabClass.java	/^    private String timeAndDay;$/;"	f	class:LabClass	file:
