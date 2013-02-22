@@ -1,6 +1,9 @@
 public class Cannon {
+	// x and y location of cannon in Space where
+	// (0,0) is the top left
 	private int x;
 	private int y;
+	// Space cannon exists in
 	private Space space;
 
 	public Cannon(Space s) {
@@ -22,12 +25,14 @@ public class Cannon {
 	}
 
 	public void moveLeft() {
+		// Check for left boundary
 		if (this.getX() != 0) {
 			x--;
 		}
 	}
 
 	public void moveRight() {
+		// Check for right boundary
 		if (this.getX() != this.space.getSize() - 1) {
 			x++;
 		}

@@ -1,5 +1,4 @@
 public interface SetInterface<T> {
-	public T getData();
 	/**
 	 * Adds a new entry to this set, avoiding duplicates. Increases the number
 	 * of entries by 1.
@@ -68,4 +67,30 @@ public interface SetInterface<T> {
 	 * @return a newly allocated array of all the entries in the set
 	 */
 	public T[] toArray();
+
+	// BONUS
+	/**
+	 * merge the current set with a second set
+	 *
+	 * @param anotherSet the set to be merged with the current set
+	 * @return union of the two sets
+	 */
+	public SetInterface<T> union(SetInterface<T> anotherSet);
+
+	/**
+	 * form the intersection of the current set with a second set
+	 *
+	 * @param anotherSet the set to intersec with the current set
+	 * @return intersection of the two sets
+	 */
+	public SetInterface<T> intersection(SetInterface<T> anotherSet);
+
+	/**
+	 * perform a set difference
+	 *
+	 * @param anotherSet the set to be subtracted with the current set
+	 * @return union of the two sets
+	 */
+	public SetInterface<T> difference(SetInterface<T> anotherSet);
+
 } // end SetInterface

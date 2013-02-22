@@ -33,19 +33,19 @@ public class ChangeMain {
 		Scanner user_input = new Scanner(System.in);
 
 		// Prompt for and store input
-		System.out.print("Please enter the amount of change: ");
-		System.out.println("The number of ways to arrange that amount is" +
-				"\nchange with quarters, dimes, nickels and pennies is: " + 
-				getArrangements(user_input.next()));
+		//System.out.print("Please enter the amount of change: ");
+		//System.out.println("The number of ways to arrange that amount is" +
+				//"\nchange with quarters, dimes, nickels and pennies is: " + 
+				//getArrangements(user_input.next()));
 
 		// TESTS
-		//int[] changes = {5, 10, 17, 25, 42, 61, 99};
+		String[] changes = {"5", "10", "17", "25", "42", "61", "99"};
 
-		/*
-		for(int change : changes) {
-			System.out.println("The number of ways to arrange your change in your pocket is: " + getArrangements(change));
+		
+		for(String change : changes) {
+			System.out.println(change + ": " + getArrangements(change));
 		}	
-		*/
+		
 
 	}
 

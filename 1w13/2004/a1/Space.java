@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Space {
+	/* TEST
 	public static void main (String[] args) {
 		Scanner user_input = new Scanner(System.in);
 		Space s = new Space(10);
@@ -10,9 +11,10 @@ public class Space {
 			s.getInvader().move();
 			s.print();
 		}
-	}
+	}*/
 
 	public static int DEFAULT_SIZE = 5;
+
 	private int size;
 	private Cannon cannon;
 	private Invader invader;
@@ -27,6 +29,7 @@ public class Space {
 		this.invader = new Invader(this);
 	}
 
+	/* TEST
 	public void moveCannon(Scanner s) {
 		System.out.print("Move where? ");
 		if (s.next().equals("l")) {
@@ -34,7 +37,7 @@ public class Space {
 		} else {
 			this.cannon.moveRight();
 		}
-	}
+	} */
 
 	public int getSize() {
 		return size;
@@ -55,12 +58,15 @@ public class Space {
 		for (int i=0; i<this.getSize(); i++) {
 			// Columns (x position starting from 0 at left)
 			for (int j=0; j<this.getSize(); j++) {
-				//System.out.println("i=" +i+ ", j=" +j+ ", X=" +this.getInvader().getX()+ ", Y=" +this.getInvader().getY());
+				// Append "W" if we are at the invader position (this gets precedence over 
+				// cannon position)
 				if (j == this.getInvader().getX() && i == this.getInvader().getY()) {
 					s += "W";
+					// If invader isn't at this position, check if cannon is there
 				} else if (j == this.getCannon().getX() && i == this.getCannon().getY()) {
 					s += "i";
 				}else {
+					// Just add "." if nothing is there
 					s += ".";
 				}
 				// Break line at end of row
@@ -69,8 +75,6 @@ public class Space {
 				}
 			}
 		}
-		// For testing, separate frames
-		s+="\n";
 		return s;
 	}
 
