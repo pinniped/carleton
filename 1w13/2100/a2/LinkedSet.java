@@ -198,6 +198,14 @@ public class LinkedSet<T>
 		}
 		System.out.println("Tests for difference() complete.");
 		//=====================================================================
+		//
+		System.out.println(set1);
+		List test = new ArrayList();
+		test.add("1");
+		test.add("watevs");
+		test.add("babak");
+		test.add(1);
+		System.out.println(test);
 	}
 
 	private int numEntries;

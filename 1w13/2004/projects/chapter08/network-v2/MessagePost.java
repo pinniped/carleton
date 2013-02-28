@@ -33,4 +33,8 @@ public class MessagePost extends Post
     {
         return message;
     }
+
+	public String getContents() {
+		return getAuthor() + " says: " + getText();
+	}
 }

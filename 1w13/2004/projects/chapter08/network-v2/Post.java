@@ -74,7 +74,7 @@ public class Post
      */
     public void display()
     {
-        System.out.println(username);
+        System.out.println(getContents());
         System.out.print(timeString(timestamp));
         
         if(likes > 0) {
@@ -114,4 +114,12 @@ public class Post
             return seconds + " seconds ago";
         }
     }
+
+	public String getContents() {
+		return username;
+	}
+
+	public String getAuthor() {
+		return username;
+	}
 }

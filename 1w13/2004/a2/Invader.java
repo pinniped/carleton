@@ -1,4 +1,3 @@
-
 /**
  * Invader starts from top of Space and zigzags down toward the bottom!
  * 
@@ -41,6 +40,7 @@ public class Invader {
      * in which case it moves down one step and switches directions for the next move.
      */
     public void move() {
+		final double PERCENT_CHANCE = 30;
         if (direction && (x < space.getSize() - 1)) x++; 
         else if (!direction && (x > 0)) x--; 
         //if we make it here, we're at either side, we need to move down
@@ -49,8 +49,10 @@ public class Invader {
             direction = !direction;
             if (y < space.getSize() - 1) y++;
         }             
+		// Fire a bullet randomly 
+		if (Math.random()*99 < PERCENT_CHANCE) {
+			space.addBullet(new Bullet(getX(), getY(), Bullet.SOUTH));
+		}
     }
-    
-
 }
 

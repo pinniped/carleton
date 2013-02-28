@@ -15,6 +15,23 @@ import java.util.ArrayList;
  */
 public class NewsFeed
 {
+	public static void main (String[] args) {
+		NewsFeed newsfeed = new NewsFeed();
+
+		for (int i = 1; i<=5; i++) {
+			newsfeed.addPost(new MessagePost("Link", "This is post no." + i));
+			newsfeed.addPost(new PhotoPost("Zelda", "file"+i, "This is picture no." +i));
+			newsfeed.addPost(new EventPost("Ganon", "type" +i));
+		}
+
+		newsfeed.getFirstPost().addComment("This is a great post, man!");
+		newsfeed.getFirstPost().like();
+		newsfeed.getFirstPost().like();
+		newsfeed.getFirstPost().unlike();
+
+		newsfeed.show();
+	}
+
     private ArrayList<Post> posts;
 
     /**
@@ -48,4 +65,8 @@ public class NewsFeed
             System.out.println();   // empty line between posts
         }
     }
+
+	public Post getFirstPost() {
+		return posts.get(0);
+	}
 }

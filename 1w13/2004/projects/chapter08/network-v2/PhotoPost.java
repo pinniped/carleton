@@ -46,4 +46,8 @@ public class PhotoPost extends Post
     {
         return caption;
     }
+
+	public String getContents() {
+		return filename + " (" + caption + ")";
+	}
 }
