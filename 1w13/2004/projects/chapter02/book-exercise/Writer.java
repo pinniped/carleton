@@ -76,4 +76,16 @@ public class Writer {
 	public void printDetails() {
 		System.out.println(this.toString());
 	}
+
+	@Override
+		public boolean equals(Object obj) {
+			if (obj instanceof Writer) {
+				Writer writer = (Writer)obj;
+				return  this.getName().equals(writer.getName()) &&
+						this.getNationality().equals(writer.getNationality()) &&
+						this.getBirthYear() == writer.getBirthYear() &&
+						this.getDeathYear() == writer.getDeathYear();
+			}
+			return false;
+		}
 }

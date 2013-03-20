@@ -1,4 +1,5 @@
-public interface PureStack    // Note: does not extend Collection
+public interface PureStack    
+// Note: does not extend Collection
 {
 	/**
 	 *  Determines the number of elements in this PureStack object.

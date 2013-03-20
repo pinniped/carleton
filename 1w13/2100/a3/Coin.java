@@ -32,5 +32,6 @@ public enum Coin {
 	public Coin getSmaller(){
 		return null;
 	}
+
 }
 

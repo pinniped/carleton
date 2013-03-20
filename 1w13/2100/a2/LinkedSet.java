@@ -206,6 +206,9 @@ public class LinkedSet<T>
 		test.add("babak");
 		test.add(1);
 		System.out.println(test);
+		if (null instanceof LinkedSet) {
+			System.out.println("WTFFFFFFF");
+		}
 	}
 
 	private int numEntries;
