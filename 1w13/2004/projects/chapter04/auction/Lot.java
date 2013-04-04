@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 /**
  * A class to model an item (or set of items) in an
  * auction: a lot.
@@ -14,7 +13,6 @@ public class Lot
     private String description;
     // The current highest bid for this lot.
     private Bid highestBid;
-	private ArrayList<Bid> successfulBids;
 
     /**
      * Construct a Lot, setting its number and description.
@@ -26,7 +24,6 @@ public class Lot
         this.number = number;
         this.description = description;
         this.highestBid = null;
-		this.successfulBids = new ArrayList<Bid>();
     }
 
     /**
@@ -37,11 +34,14 @@ public class Lot
      */
     public boolean bidFor(Bid bid)
     {
-        if(highestBid == null || bid.getValue() > highestBid.getValue()) {
+        if(highestBid == null) {
             // There is no previous bid.
             highestBid = bid;
-			
-			successfulBids.add(bid);
+            return true;
+        }
+        else if(bid.getValue() > highestBid.getValue()) {
+            // The bid is better than the previous one.
+            highestBid = bid;
             return true;
         }
         else {
@@ -57,11 +57,8 @@ public class Lot
     {
         String details = number + ": " + description;
         if(highestBid != null) {
-			for (Bid b : successfulBids) {
-				details+="\n\t";
-				details+="Bidder: " + b.getBidder().getName();
-				details+="\tBid: " + b.getValue();
-			}
+            details += "    Bid: " + 
+                       highestBid.getValue();
         }
         else {
             details += "    (No bid)";
