@@ -1,3 +1,0 @@
- Hi, I'm trying to get syntax highlighting to work for c++ functions. How can I tell if my cpp.vim under ftplugin is loaded?
- Calling :scriptname only shows scripts loaded from /usr/share/vim/vim73/ftplugin, but not ~/.vim/ftplugin
-

@@ -1,6 +1,0 @@
-fopen examplePlease enter a number: 1073741824
-Please enter two numbers: 4 2
-Please enter a float and a double: 2.400000 1232.423000
-Please enter a character: d
-Please enter a boolean: 0
-Please enter a string: Hello!
