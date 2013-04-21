@@ -1,0 +1,2 @@
+javac ChangeMain.java
+Makefile:4: recipe for target `ChangeMain.class' failed

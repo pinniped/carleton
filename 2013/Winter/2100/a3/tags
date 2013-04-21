@@ -1,0 +1,37 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Coin	Coin.java	/^	private Coin(int value) {$/;"	m	class:Coin	file:
+Coin	Coin.java	/^public enum Coin {$/;"	g
+DIME	Coin.java	/^	DIME(10){$/;"	e	enum:Coin	file:
+LinkedListPureStack	LinkedListPureStack.java	/^public class LinkedListPureStack $/;"	c
+NICKEL	Coin.java	/^	NICKEL(5){$/;"	e	enum:Coin	file:
+Node	LinkedListPureStack.java	/^		public Node(Object data) {$/;"	m	class:LinkedListPureStack.Node
+Node	LinkedListPureStack.java	/^	public class Node {$/;"	c	class:LinkedListPureStack
+PENNY	Coin.java	/^	PENNY(1);$/;"	e	enum:Coin	file:
+PureStack	PureStack.java	/^public interface PureStack    \/\/ Note: does not extend Collection$/;"	i
+QUARTER	Coin.java	/^	QUARTER(25) {$/;"	e	enum:Coin	file:
+StackChangeMain	StackChangeMain.java	/^public class StackChangeMain {$/;"	c
+data	LinkedListPureStack.java	/^		Object data;$/;"	f	class:LinkedListPureStack.Node
+getArrangements	StackChangeMain.java	/^	public static int getArrangements(int amount) {$/;"	m	class:StackChangeMain
+getSmaller	Coin.java	/^	public Coin getSmaller(){$/;"	m	class:Coin
+getValue	Coin.java	/^	public int getValue() {$/;"	m	class:Coin
+head	LinkedListPureStack.java	/^	Node head;$/;"	f	class:LinkedListPureStack
+isEmpty	LinkedListPureStack.java	/^	public boolean isEmpty() {$/;"	m	class:LinkedListPureStack
+isEmpty	PureStack.java	/^	boolean isEmpty();$/;"	m	interface:PureStack
+main	StackChangeMain.java	/^	public static void main (String[] args) {$/;"	m	class:StackChangeMain
+next	LinkedListPureStack.java	/^		Node next;$/;"	f	class:LinkedListPureStack.Node
+peek	LinkedListPureStack.java	/^	public Object peek() {$/;"	m	class:LinkedListPureStack
+peek	PureStack.java	/^   Object peek();$/;"	m	interface:PureStack
+pop	LinkedListPureStack.java	/^	public Object pop() {$/;"	m	class:LinkedListPureStack
+pop	PureStack.java	/^	Object pop();$/;"	m	interface:PureStack
+push	LinkedListPureStack.java	/^	public void push (Object element) {$/;"	m	class:LinkedListPureStack
+push	PureStack.java	/^	void push (Object element);$/;"	m	interface:PureStack
+size	LinkedListPureStack.java	/^	int size;$/;"	f	class:LinkedListPureStack
+size	LinkedListPureStack.java	/^	public int size() {$/;"	m	class:LinkedListPureStack
+size	PureStack.java	/^	int size();$/;"	m	interface:PureStack
+testFunction	LinkedListPureStack.java	/^	public void testFunction () {$/;"	m	class:LinkedListPureStack
+value	Coin.java	/^	private final int value;$/;"	f	class:Coin	file:
