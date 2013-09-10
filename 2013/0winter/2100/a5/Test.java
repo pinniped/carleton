@@ -1,7 +1,15 @@
 import java.util.*;
 import java.io.*;
+
+public void main (String[] args) {
+
+}
+private int blah;
+private int blah;
+private int blah;
+private int blah;
 public class Test {
-	public static void main (String[] args) {
+	public void main (String[] args) {
 		final String DEFAULT_FILE = "Declaration.txt";
 		File file = new File(DEFAULT_FILE);
 
