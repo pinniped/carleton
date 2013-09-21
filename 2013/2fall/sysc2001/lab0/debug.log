@@ -1,0 +1,312 @@
+<label>
+	<name>start</name>
+<label>
+<statement>
+	<type>opcode</type>
+	<opcode>mov</opcode>
+	<id>68</id>
+	<params>
+		<Register>
+			<address>02</address>
+			<name>DX</name>
+			<type>general purpose</type>
+		</Register>
+		<Immediate>
+			<value>04E9</value>
+		</Immediate>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>mov</opcode>
+	<id>68</id>
+	<params>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+		<Immediate>
+			<value>24</value>
+		</Immediate>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>out</opcode>
+	<id>76</id>
+	<params>
+		<Register>
+			<address>02</address>
+			<name>DX</name>
+			<type>general purpose</type>
+		</Register>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>mov</opcode>
+	<id>68</id>
+	<params>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+		<Immediate>
+			<value>69</value>
+		</Immediate>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>out</opcode>
+	<id>76</id>
+	<params>
+		<Register>
+			<address>02</address>
+			<name>DX</name>
+			<type>general purpose</type>
+		</Register>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>mov</opcode>
+	<id>68</id>
+	<params>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+		<Immediate>
+			<value>61</value>
+		</Immediate>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>out</opcode>
+	<id>76</id>
+	<params>
+		<Register>
+			<address>02</address>
+			<name>DX</name>
+			<type>general purpose</type>
+		</Register>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>mov</opcode>
+	<id>68</id>
+	<params>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+		<Immediate>
+			<value>6E</value>
+		</Immediate>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>out</opcode>
+	<id>76</id>
+	<params>
+		<Register>
+			<address>02</address>
+			<name>DX</name>
+			<type>general purpose</type>
+		</Register>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>mov</opcode>
+	<id>68</id>
+	<params>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+		<Immediate>
+			<value>6D</value>
+		</Immediate>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>out</opcode>
+	<id>76</id>
+	<params>
+		<Register>
+			<address>02</address>
+			<name>DX</name>
+			<type>general purpose</type>
+		</Register>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>mov</opcode>
+	<id>68</id>
+	<params>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+		<Immediate>
+			<value>69</value>
+		</Immediate>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>out</opcode>
+	<id>76</id>
+	<params>
+		<Register>
+			<address>02</address>
+			<name>DX</name>
+			<type>general purpose</type>
+		</Register>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>mov</opcode>
+	<id>68</id>
+	<params>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+		<Immediate>
+			<value>6E</value>
+		</Immediate>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>out</opcode>
+	<id>76</id>
+	<params>
+		<Register>
+			<address>02</address>
+			<name>DX</name>
+			<type>general purpose</type>
+		</Register>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>mov</opcode>
+	<id>68</id>
+	<params>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+		<Immediate>
+			<value>67</value>
+		</Immediate>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>out</opcode>
+	<id>76</id>
+	<params>
+		<Register>
+			<address>02</address>
+			<name>DX</name>
+			<type>general purpose</type>
+		</Register>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>hlt</opcode>
+	<id>21</id>
+	<params>
+	</params>
+</statement>
+<control>
+	<name>end</name>
+	<key><key>
+	<value>
+	<Constant>
+		<name>start</name>
+	</Constant>
+	<value>
+<control>
+assembly started!
+Location start maps to counter: 0
+Computed word: 04E9C2C7 PC = 0
+Computed word: 24B0 PC = 4
+Computed word: EE PC = 6
+Computed word: 69B0 PC = 7
+Computed word: EE PC = 9
+Computed word: 61B0 PC = 10
+Computed word: EE PC = 12
+Computed word: 6EB0 PC = 13
+Computed word: EE PC = 15
+Computed word: 6DB0 PC = 16
+Computed word: EE PC = 18
+Computed word: 69B0 PC = 19
+Computed word: EE PC = 21
+Computed word: 6EB0 PC = 22
+Computed word: EE PC = 24
+Computed word: 67B0 PC = 25
+Computed word: EE PC = 27
+Computed word: F4 PC = 28
+Starting object-write process!
+Reading 1825 characters... all characters read successfully.

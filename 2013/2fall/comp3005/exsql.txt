@@ -1,0 +1,13 @@
+create table if not exists
+(id integer primary key not null,
+songTitle text not null,
+bookCode text not null,
+studentNumber text not null);
+
+SPC4
+
+insert into songs (col1, col2)
+values
+(d1,d2),
+
+.width 3 60 10 5 11

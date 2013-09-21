@@ -1,0 +1,25 @@
+Which register is being used to hold the "readAddress" variable?
+BX
+
+At what address does your string start? At what address does your actual program start (i.e. the first instruction)?
+0000 Strings starts
+000D First instruction
+
+What does the value does the IP register start at (before you run your program)? Where does this value come from?
+000D Where the first instruction is.
+
+What value is at memory address 0001h? Where does this value come from?
+65 - ASCII for 'e' in "Hello".
+
+What is output to the screen instead of "Hello World!"? Why did the message change?
+"Hallo world!" since 61 is ASCII for 'a'.
+
+Why did the program print the original (unaltered) "Hello World!" message again?
+Because code was reloaded.
+
+What is the difference between the "Stop" and "Reload File" buttons?
+Reload reloads code into memory. Stop simply jumps to first instrcution.
+
+How do you now change the contents of memory (not your ASM code) to make the program only print "Hello"?
+Add '$' ASCII to memory block directly after the one holding 'o'.
+

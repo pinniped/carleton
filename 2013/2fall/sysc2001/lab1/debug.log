@@ -1,0 +1,232 @@
+<control>
+	<name>equ</name>
+	<key>Display<key>
+	<value>
+	<Immediate>
+		<value>04E9</value>
+	</Immediate>
+	<value>
+<control>
+<label>
+	<name>Message</name>
+<label>
+<control>
+	<name>db</name>
+	<key><key>
+	<value>
+	<Immediate>
+		<value>247E7A79786362615A</value>
+	</Immediate>
+	<value>
+<control>
+<label>
+	<name>PrtLow</name>
+<label>
+<statement>
+	<type>opcode</type>
+	<opcode>mov</opcode>
+	<id>68</id>
+	<params>
+		<Register>
+			<address>03</address>
+			<name>BX</name>
+			<type>general purpose</type>
+		</Register>
+		<Constant>
+			<name>Message</name>
+		</Constant>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>mov</opcode>
+	<id>68</id>
+	<params>
+		<Register>
+			<address>02</address>
+			<name>DX</name>
+			<type>general purpose</type>
+		</Register>
+		<Immediate>
+			<value>04E9</value>
+		</Immediate>
+	</params>
+</statement>
+<label>
+	<name>PrtChar</name>
+<label>
+<statement>
+	<type>opcode</type>
+	<opcode>mov</opcode>
+	<id>68</id>
+	<params>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+		<Register>
+			<address>03</address>
+			<name>BX</name>
+			<type>general purpose</type>
+		</Register>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>cmp</opcode>
+	<id>13</id>
+	<params>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+		<Immediate>
+			<value>24</value>
+		</Immediate>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>je</opcode>
+	<id>35</id>
+	<params>
+		<Constant>
+			<name>EndPrt</name>
+		</Constant>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>cmp</opcode>
+	<id>13</id>
+	<params>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+		<Immediate>
+			<value>61</value>
+		</Immediate>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>jl</opcode>
+	<id>38</id>
+	<params>
+		<Constant>
+			<name>incPtr</name>
+		</Constant>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>cmp</opcode>
+	<id>13</id>
+	<params>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+		<Immediate>
+			<value>7A</value>
+		</Immediate>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>jg</opcode>
+	<id>36</id>
+	<params>
+		<Constant>
+			<name>incPtr</name>
+		</Constant>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>out</opcode>
+	<id>76</id>
+	<params>
+		<Register>
+			<address>02</address>
+			<name>DX</name>
+			<type>general purpose</type>
+		</Register>
+		<Register>
+			<address>00</address>
+			<name>AL</name>
+			<type>general purpose</type>
+		</Register>
+	</params>
+</statement>
+<label>
+	<name>incPtr</name>
+<label>
+<statement>
+	<type>opcode</type>
+	<opcode>inc</opcode>
+	<id>25</id>
+	<params>
+		<Register>
+			<address>03</address>
+			<name>BX</name>
+			<type>general purpose</type>
+		</Register>
+	</params>
+</statement>
+<statement>
+	<type>opcode</type>
+	<opcode>jmp</opcode>
+	<id>60</id>
+	<params>
+		<Constant>
+			<name>PrtChar</name>
+		</Constant>
+	</params>
+</statement>
+<label>
+	<name>EndPrt</name>
+<label>
+<statement>
+	<type>opcode</type>
+	<opcode>hlt</opcode>
+	<id>21</id>
+	<params>
+	</params>
+</statement>
+<control>
+	<name>end</name>
+	<key><key>
+	<value>
+	<Constant>
+		<name>PrtLow</name>
+	</Constant>
+	<value>
+<control>
+assembly started!
+Location Message maps to counter: 0
+Location PrtLow maps to counter: 9
+Location PrtChar maps to counter: 17
+Location incPtr maps to counter: 32
+Location EndPrt maps to counter: 36
+Computed word: 247E7A79786362615A PC = 0
+Computed word: 0000C3C7 PC = 9
+Computed word: 04E9C2C7 PC = 13
+Computed word: 078A PC = 17
+Computed word: 243C PC = 19
+Computed word: 0D74 PC = 21
+Computed word: 613C PC = 23
+Computed word: 057C PC = 25
+Computed word: 7A3C PC = 27
+Computed word: 017F PC = 29
+Computed word: EE PC = 31
+Computed word: 43 PC = 32
+Computed word: FFEDE9 PC = 33
+Computed word: F4 PC = 36
+Starting object-write process!
+Reading 1937 characters... all characters read successfully.
